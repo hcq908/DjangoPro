@@ -1,0 +1,12 @@
+{% extends 'learningApp/base.html' %} <!-- 载入模板文件,文件位置为tempates中的位置 -->
+
+{% block content %}
+<p><a href="{% url 'learningApp:topic' topic.id %}">{{topic }}</a></p>
+    <p>Add a new entry:</p>
+<form action="{% url 'learningApp:new_entry' topic.id%}" method="post"><!-- action 请求的数据发送到哪里 -->
+{% csrf_token %} <!-- 防止跨站请求伪造 -->
+{{ form.as_p }} <!-- as_p 修饰符,以段落格式渲染所有表单元素 -->
+<button name="submit">add entry</button> <!-- 添加按钮 -->
+</form>
+{% endblock content %}
+
